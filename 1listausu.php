@@ -1,3 +1,8 @@
+<?php
+session_start()
+?>
+
+
 <html>
 <?php
 include('1conexao.php');
@@ -46,17 +51,20 @@ $query = mysqli_query($conn, $sql);
                 <td><?php echo $dados['nascimento'] ?></td>
                 <td><?php echo $dados['senha'] ?></td>
 
+                
+                
                 <td colspan="2" class="text-center">
-                    <a class='btn btn-info btn-sm' href='1edit.php?codigo=<?php echo $dados['codigo'] ?>'>Editar</a>
-                    <a class='btn btn-red btn-sm' href='#' onclick='confirmar("<?php echo $dados['codigo'] ?>")'>Excluir</a></td>
+                    <a class='btn btn-info btn-sm' href='1edit.php?Cod_Cliente=<?php echo $dados['Cod_Cliente'] ?>'>Editar</a>
+                    <a class='btn btn-info btn-sm' href='1delete.php?Cod_Cliente=<?php echo $dados['Cod_Cliente'] ?>'>Excluir</a>
             </tr>
-        <?php } ?>
+            <?php } ?>
     </table>
 </div>
 <script>
-    function confirmar(codigo) {
+    function confirmar(Cod_Cliente) {
         if (confirm('Você realmente deseja excluir esta linha?'))
-            location.href = '1delete.php?codigo=' + codigo;
+            location.href = '1delete.php?Cod_Cliente=' + Cod_Cliente;
     }
 </script>
-
+</body>
+</html>

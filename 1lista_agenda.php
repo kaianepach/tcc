@@ -1,8 +1,10 @@
+<?php session_start() ?>
+
+
 <?php
 include('1conexao.php');
 include('1menu.php');
 $sql = "SELECT * FROM AgendaUsu";
-
 $query = mysqli_query($conn, $sql);
 ?>
 
@@ -17,6 +19,21 @@ $query = mysqli_query($conn, $sql);
 </head>
 
 <body>
+
+<?php
+
+if(!isset($_SESSION['login'])){
+    if(isset($_POST['acao']) ){
+
+    }
+
+    include('1login.php');
+}else{
+    include('home.php');
+}
+
+?>
+
 
 <div class='container'>
   <div class="jumbotron">
@@ -34,7 +51,7 @@ $query = mysqli_query($conn, $sql);
 
 </style>
 
-    <h3 class='p-3'>Agendamentos cadastrados</h3>
+    <h3 class='p-3'>Serviços cadastrados</h3>
 
     <a href="1agenda.php" class="btn btn-dark">Cadastrar novo </a>
    

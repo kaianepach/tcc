@@ -2,14 +2,13 @@
 
 include('1conexao.php');
 
-$Cod_Cliente = $_GET['Cod_Cliente'];
+$codigo = $_GET['codigo'];
 
-$sql = "DELETE FROM Cliente WHERE Cod_Cliente=$Cod_Cliente";
+$sql = "DELETE FROM Cliente WHERE codigo=$codigo";
 
 mysqli_query($conn, $sql);
 if (mysqli_affected_rows($conn) > 0) {
-    echo "<script> alert('Usuário alterado com sucesso.') </script>";
-    header("Location: 1listausu.php");
+    header("Location: listaUsuarios.php");
 } else {
     echo "<script>alert('Houve algum erro.');</script>";
     mysqli_error($conn);

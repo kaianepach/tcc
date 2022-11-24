@@ -1,0 +1,77 @@
+<html>
+<?php
+include('1conexao.php');
+
+$codigo = $_GET['codigo'];
+
+if (isset($_POST['btnSalvar'])) {
+    $nome = $_POST['nome'];
+    $serviço = $_POST['serviço'];
+    $data_usuario = $_POST['data_usuario'];
+    $inicio = $_POST['inicio'];
+    $fim = $_POST['fim'];
+
+    $sql = "UPDATE usuarios SET 
+                nome='$nome', 
+                serviço='$serviço', 
+                data_usuario='$data_usuario',
+                inicio='$inicio',
+                fim='$fim'
+            WHERE codigo='$codigo'";
+
+    mysqli_query($conn, $sql);
+
+    if (mysqli_affected_rows($conn) > 0) {
+        echo "<script> alert('Usuário alterado com sucesso.') </script>";
+        header("Location: listaUsuarios.php");
+    } else {
+        echo "<script> alert('Ocorreu algum erro.') </script>";
+    }
+}
+$sql = "SELECT * FROM usuarios WHERE codigo=$codigo";
+$rs = mysqli_query($conn, $sql);
+$linha = mysqli_fetch_array($rs);
+?>
+<html>
+<?php include('menu.php'); ?>
+<div class="container">
+<style>
+.container {
+    width: 28%;
+    
+    border-radius: 20px;
+    
+ }
+
+
+</style>
+
+
+    <h3 class='p-3'>Edite seu agendamento</h3>
+    <form method="post">
+        <div class="form-group">
+            Nome: <input class='form-control' type="text" placeholder="Nome Completo" name="nome" style="border: solid 2px #232426; border-radius: 10px; background-color: #ffffff" value = <?php echo $linha['nome'] ?>  /> 
+        </div>
+    
+        <div class="form-group">
+            Serviço: <input class='form-control' type="text" placeholder="Serviço" name="serviço" style="border: solid 2px #232426; border-radius: 10px; background-color: #ffffff" value = <?php echo $linha['serviço']?> />
+        </div>
+        <div class="form-group">
+            Data: <input class='form-control' type="text" placeholder="Data" name="data_usuario" style="border: solid 2px #232426; border-radius: 10px; background-color: #ffffff" value = <?php echo $linha['data_usuario']?> />
+        </div>
+        <div class="form-group">
+            Horário de Entrada: <input class='form-control' type="text" placeholder="inicio" name="inicio" style="border: solid 2px #232426; border-radius: 10px; background-color: #ffffff"  value = <?php echo $linha['inicio']?> />
+        </div>
+        <div class="form-group">
+            Horário de saída: <input class='form-control' type="text" placeholder="fim" name="fim" style="border: solid 2px #232426; border-radius: 10px; background-color: #ffffff" value = <?php echo $linha['fim']?> />
+        </div>
+        <div class="form-group">
+            <input class='button-submit btn btn-success text-white' type="submit" value="Salvar" name="btnSalvar" style="background-color: #dd9079; border: none; margin-bottom: 5px; margin-left: 60px; padding: 6px 20px; border-radius: 7px"; />
+            <input class='btn btn-info' type="reset" value="Limpar campos" style="background-color: #dd9079; border: none; border-radius: 7px; text-align: center; margin-bottom: 5px; margin-left: 5px; padding: 6px 20px; color: white"; />
+        </div>
+    </form>
+</div>
+ 
+</body>
+ 
+</html>
