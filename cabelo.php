@@ -146,7 +146,7 @@ body{
 
 <main>
 
-<h2 class="sla">MAIS POPULARES<h2>
+<h2 class="sla">TODOS OS CABELOS<h2>
   <div class="album py-5 bg-light">
     <div class="container">
 
@@ -205,7 +205,7 @@ body{
 </main>
 
 <main>
-<h2 class="sla1">NOVIDADES<h2>
+
   <div class="album py-5 bg-light">
     <div class="container">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -263,7 +263,7 @@ body{
 </main>
 
         <main>
-<h2 class="sla1">COMBOS DE SERVIÇOS<h2>
+
   <div class="album py-5 bg-light">
     <div class="container">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"> 

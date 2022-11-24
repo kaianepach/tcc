@@ -47,8 +47,9 @@ $result = $conexao->query($sql);
     </div>
 
 
+
    <div>
-        <a href='alterar.php' class='alterar'>Alterar</a>
+   <a class='alterar' href='alterar.php?Cod_Cliente=<?php echo $dados['Cod_Cliente'] ?>'>Alterar</a>
     </div> 
 
     </header>

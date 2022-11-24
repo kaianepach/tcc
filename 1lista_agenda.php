@@ -1,7 +1,4 @@
-<?php session_start() ?>
-
-
-<?php
+<?php 
 include('1conexao.php');
 include('1menu.php');
 $sql = "SELECT * FROM AgendaUsu";
@@ -20,40 +17,49 @@ $query = mysqli_query($conn, $sql);
 
 <body>
 
-<?php
 
-if(!isset($_SESSION['login'])){
-    if(isset($_POST['acao']) ){
-
-    }
-
-    include('1login.php');
-}else{
-    include('home.php');
-}
-
-?>
 
 
 <div class='container'>
   <div class="jumbotron">
 
 <style>
-.jumbotron{
-    border-radius: 20px;
+.jumbotron {
+    margin-top: 45px;
     border-radius: 20px;
     margin-bottom: 2rem;
-    background-color: #F8F9FA;
+    background-color: #fefefe;
 }
 
 
+.btn-Primar{
+    margin-left: 15px;
+    color: #fff;
+    margin-bottom: 20px;
+    background-color: #DD9079;
+    border-color: #DD9079;
+}
+
+.btn-inf{
+    background-color: #ACA2B1;
+    border-color: #ACA2B1;
+    color: white;
+   
+}
+
+
+.btn-secondar {
+    color: #fff;
+    background-color: #5FBDC1;
+    border-color: #5FBDC1;
+}
 
 
 </style>
 
-    <h3 class='p-3'>Serviços cadastrados</h3>
+    <h3 class='p-3'>Agendamentos cadastrados</h3>
 
-    <a href="1agenda.php" class="btn btn-dark">Cadastrar novo </a>
+    <a href="1agenda.php" class="btn btn-primar">Novo horário</a>
    
 
     <table class='table table-hover'>
@@ -72,12 +78,21 @@ if(!isset($_SESSION['login'])){
                 <td><?php echo $dados['horario'] ?></td>
                 <td><?php echo $dados['obs'] ?></td>
                 
-            
+                <td colspan="2" class="text-center">
+                    <a class='btn btn-inf btn-sm' href='1edit_agenda.php?Cod_Agenda=<?php echo $dados['Cod_Agenda'] ?>'>Editar</a>
+                    <a class='btn btn-secondar btn-sm' href='1delete_agenda.php?Cod_Agenda=<?php echo $dados['Cod_Agenda'] ?>'>Excluir</a>
             </tr>
-        <?php } ?>
+            <?php } ?>
     </table>
 </div>
-
-
+<script>
+    function confirmar(Cod_Agenda) {
+        if (confirm('Você realmente deseja excluir esta linha?'))
+            location.href = '1delete_agenda.php?Cod_Agenda=' + Cod_Agenda;
+    }
+</script>
 </body>
 </html>
+
+
+

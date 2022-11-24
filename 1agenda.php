@@ -14,14 +14,13 @@
 mysqli_query($conn, $sql);
 
 if (mysqli_affected_rows($conn) > 0) {
-echo "<script> alert('Usuário cadastrado com sucesso.') </script>";
+    echo "<script> alert('Usuário cadastrado com sucesso.') </script>";
+    header("Location: 1lista_agenda.php");
 } else {
-echo "<script> alert('Ocorreu algum erro.') </script>";
-
+    echo "<script> alert('Ocorreu algum erro.') </script>";
 }
 }
 ?>
-
 
 <html>
 <?php include('1menu.php'); ?>
@@ -56,13 +55,15 @@ text-align: center;
 </style>
 
 <div class="">
-    <h3 class='p-3'>Agendar serviço</h3>
+    <h3 class='p-3'>Agendar horário</h3>
     
 
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <div class="form-group font-weight-bold">
              <input class='form-control' type="text" placeholder="Nome Completo" name="cod_Cliente" style="border: solid 2px #232426; border-radius: 10px; padding: 7px; margin-top: 23px; background-color: #ffffff" require>
-    
+        </div>
+
+
         <div class="form-group font-weight-bold">
              <input class='form-control' type="date" name="data_1" style="border: solid 2px #232426; border-radius: 10px; background-color: #ffffff" require>
         </div>
@@ -76,8 +77,8 @@ text-align: center;
         </div>
         </div>
             <div class="form-group font-weight-bold">
-                <input class='button-submit btn btn-success text-white' type="submit" name="btnEnviar" style="background-color: #dd9079; border: none; margin-bottom: 5px; margin-left: 60px; padding: 6px 20px; border-radius: 7px"; />
-                <input class='btn sucess' type="reset" value="Limpar campos" style="background-color: #dd9079; border: none; border-radius: 7px; text-align: center; margin-bottom: 5px; margin-left: 5px; padding: 6px 20px; color: white"; />
+                <input class='button-submit btn btn-success text-white' type="submit" name="btnEnviar" style="background-color: #dd9079; border: none; margin-bottom: 25px; margin-top: 10px;  margin-left: 74px; padding: 6px 30px; border-radius: 7px"; />
+                <input class='btn sucess' type="reset" value="Limpar" style="background-color: #dd9079; border: none; border-radius: 7px; text-align: center; margin-bottom: 25px; margin-top: 10px; margin-left: 5px; padding: 6px 30px; color: white"; />
             </div>
     </form>
 </div>

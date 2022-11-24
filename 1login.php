@@ -1,11 +1,6 @@
 <?
 
-include('conexao.php');
 
-if(empty($_POST['emai_func']) || empty($_POST['senha_func'])){
-    header('Locaion: 1login3.php');
-    exit();
-}
 
 ?>
 
@@ -131,22 +126,25 @@ transition: .5s;
 
     <div class="center">
         <h1>Login</h1>
-        <form action="1login3.php" method="_POST">
+
+
+        <form method="post">
             <div class="txt_field">
-                <input type="email" required>
+                <input type="email" name="emai_func" required>
                 <span></span>
                 <label>E-mail</label>
             </div>
 
             <div class="txt_field">
-                <input type="password" required>
+            <input type="password" name="senha_func" required>
                 <span></span>
                 <label>Senha</label>
             </div>
-            <input class="submit" type="submit"  value="Enviar">
+            <input class="submit" type="submit" name="submit"  value="Enviar">
         </form>
         
     </div>
    
 </body>
 </html>
+

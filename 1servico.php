@@ -108,8 +108,8 @@ text-align: center;
 
 
             <div class="form-group font-weight-bold">
-            <input class='button-submit btn btn-success text-white' type="submit" name="btnEnviar" style="background-color: #dd9079; border: none; margin-bottom: 5px; margin-left: 60px; padding: 6px 20px; border-radius: 7px"; />
-                <input class='btn sucess' type="reset" value="Limpar" style="background-color: #dd9079; border: none; border-radius: 7px; text-align: center; margin-bottom: 5px; margin-left: 5px; padding: 6px 20px; color: white"; />
+            <input class='button-submit btn btn-success text-white' type="submit" name="btnEnviar" style="background-color: #dd9079; border: none; margin-bottom: 25px; margin-left: 78px; margin-top: 10px; padding: 6px 30px; border-radius: 7px"; />
+                <input class='btn sucess' type="reset" value="Limpar" style="background-color: #dd9079; border: none; border-radius: 7px; text-align: center; margin-bottom: 25px; margin-top: 10px; margin-left: 5px; padding: 6px 30px; color: white"; />
             </div>
     </form>
 </div>

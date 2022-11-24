@@ -1,8 +1,3 @@
-<?php
-session_start()
-?>
-
-
 <html>
 <?php
 include('1conexao.php');
@@ -15,20 +10,39 @@ $query = mysqli_query($conn, $sql);
   <div class="jumbotron">
   <style>
 .jumbotron{
+   
+    margin-top: 45px;
     border-radius: 20px;
     margin-bottom: 2rem;
-    background-color: #F8F9FA;
+    background-color: #fefefe;
+
 }
-.btn-dark {
+.btn-Primar{
+    margin-left: 15px;
     color: #fff;
+    margin-bottom: 20px;
     background-color: #DD9079;
     border-color: #DD9079;
 }
 
-</style>
-    <h3 class='p-3'>Usuários cadastrados</h3>
+.btn-inf{
+    background-color: #ACA2B1;
+    border-color: #ACA2B1;
+    color: white;
+   
+}
 
-    <a href="1register.php" class="btn btn-dark">Cadastrar novo </a>
+
+.btn-secondar {
+    color: #fff;
+    background-color: #5FBDC1;
+    border-color: #5FBDC1;
+}
+
+</style>
+<h3 class='p-3'>Usuários cadastrados</h3>
+
+<a href="1.php" class="btn btn-Primar">Novo cadastro</a>
    
 
     <table class='table table-hover'>
@@ -38,7 +52,6 @@ $query = mysqli_query($conn, $sql);
             <td>Telefone</td>
             <td>Gênero</td>
             <td>Nascimento</td>
-            <td>Senha</td> 
             <td class="text-center">Ação</td>
         </tr>
 
@@ -49,13 +62,10 @@ $query = mysqli_query($conn, $sql);
                 <td><?php echo $dados['fone'] ?></td>
                 <td><?php echo $dados['genero'] ?></td>
                 <td><?php echo $dados['nascimento'] ?></td>
-                <td><?php echo $dados['senha'] ?></td>
 
-                
-                
                 <td colspan="2" class="text-center">
-                    <a class='btn btn-info btn-sm' href='1edit.php?Cod_Cliente=<?php echo $dados['Cod_Cliente'] ?>'>Editar</a>
-                    <a class='btn btn-info btn-sm' href='1delete.php?Cod_Cliente=<?php echo $dados['Cod_Cliente'] ?>'>Excluir</a>
+                    <a class='btn btn-inf btn-sm' href='1register.php?Cod_Cliente=<?php echo $dados['Cod_Cliente'] ?>'>Editar</a>
+                    <a class='btn btn-secondar btn-sm' href='1delete.php?Cod_Cliente=<?php echo $dados['Cod_Cliente'] ?>'>Excluir</a>
             </tr>
             <?php } ?>
     </table>
@@ -68,3 +78,17 @@ $query = mysqli_query($conn, $sql);
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

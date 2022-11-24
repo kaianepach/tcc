@@ -1,89 +1,87 @@
-
-<!DOCTYPE html>
 <html>
+<?php
+include('1conexao.php');
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+$Cod_Cliente = $_GET['Cod_Cliente'];
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+if (isset($_POST['btnSalvar'])) {
+    $nome = $_POST['nome'];
+    $email = $_POST['email'];
+    $fone = $_POST['fone'];
+    $genero = $_POST['genero'];
+    $nascimento = $_POST['nascimento'];
+    $senha = $_POST['senha'];
 
-    <link rel="stylesheet" type="text/css" href="register.css">
+    $sql = "UPDATE Cliente SET 
+                nome='$nome', 
+                email='$email', 
+                fone='$fone',
+                genero='$genero',
+                nascimento='$nascimento'
+                senha='$senha'
+            WHERE Cod_Cliente='$Cod_Cliente'";
+mysqli_query($conn, $sql);
 
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css'>
-
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js' charset='utf-8'></script>
-
-    <title>Tela de Login</title>
-
-</head>
-
-<body>
-
-    <header>
-
-    <div id="logo">
+    if (mysqli_affected_rows($conn) > 0) {
+        echo "<script> alert('Usuário cadastrado com sucesso.') </script>";
+        header("Location: 1listausu.php");
+    } else {
+        echo "<script> alert('Ocorreu algum erro.') </script>";
+    }
+}
+$sql = "SELECT * FROM Cliente WHERE Cod_Cliente=$Cod_Cliente";
+$rs = mysqli_query($conn, $sql);
+$linha = mysqli_fetch_array($rs);
+?>
+<html>
+<?php include('1menu.php'); ?>
+<div class="container">
+<style>
+.container {
+    width: 28%;
     
-    <a href="nsei.php">
-    <img src='acucena.png'></a>
-
-    </div>
-
-    </header>
-
-    <div class="container">
-        <form method="post" class="login-email" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-            <p class="vindo-text" style="font-size: 2rem; font-weight; 800;">Criar uma conta</p>
-
-            <div class="input-group">
-                <input type="text" placeholder="Nome completo" name="nome" required>
-            </div>
-
-            <div class="input-group">
-                <input type="text" placeholder="E-mail" name="email" required>
-            </div>
-
-            <div class="input-group">
-                <input type="text" placeholder="Telefone" name="fone" required>
-            </div>
-
-          
-
-            <div class="input-group">
-                <select class="input" name="genero" required>
-                    <option value="feminino">Feminino</option>
-                    <option value="masculino">Masculino</option>
-                    <option value="outro">Outro</option>
-                </select>
-            </div>
+    border-radius: 20px;
+    
+ }
 
 
-            <div class="input-group">
-                <input type="date" placeholder="Nascimento" name="nascimento" required>
-            </div>
+</style>
 
-            <div class="input-group">
-                <input type="password" placeholder="Senha" name="senha" required>
-            </div>
+<h3 class='p-3'>Editar cadastro</h3>
+    <form method="post">
+        <div class="form-group">
+            Nome: <input class='form-control' type="text" placeholder="Nome" name="nome" style="border: solid 2px #232426; border-radius: 10px; background-color: #ffffff" value = <?php echo $linha['nome'] ?>  /> 
+        </div>
+    
+        <div class="form-group">
+            E-mail: <input class='form-control' type="text" placeholder="email" name="email" style="border: solid 2px #232426; border-radius: 10px; background-color: #ffffff" value = <?php echo $linha['email']?> />
+        </div>
+        <div class="form-group">
+            Telefone: <input class='form-control' type="text" placeholder="Telefone" name="fone" style="border: solid 2px #232426; border-radius: 10px; background-color: #ffffff" value = <?php echo $linha['fone']?> />
+        </div>
+        <div class="form-group">
+            Gênero: <input class='form-control' type="text" placeholder="Gênero" name="genero" style="border: solid 2px #232426; border-radius: 10px; background-color: #ffffff"  value = <?php echo $linha['genero']?> />
+        </div>
+        <div class="form-group">
+            Nascimento: <input class='form-control' type="text" placeholder="Nascimento" name="nascimento" style="border: solid 2px #232426; border-radius: 10px; background-color: #ffffff" value = <?php echo $linha['nascimento']?> />
+        </div>
 
-            <!--   <section>
-                <button class="button-as-link" type="submit" name="submit" id='submit'>
-                <a class="no-link" href="index.php">Cadastrar</a></button>
-             -->
-            <button type="submit" name="submit" id='submit'>Cadastrar</button>
+        <div class="form-group">
+            Senha: <input class='form-control' type="text" placeholder="Senha" name="senha" style="border: solid 2px #232426; border-radius: 10px; background-color: #ffffff" value = <?php echo $linha['senha']?> />
+        </div>
 
 
-            <button type='reset' class="btn" id="limpar">Limpar</button>
-            </section>
-
-
-
-            <p class="login-register-text">Você possui uma conta? <a href="index.php">Entrar</a></p>
-
-    </div>
+        <div class="form-group">
+            <input class='button-submit btn btn-success text-white' type="submit" value="Salvar" name="btnSalvar" style="background-color: #dd9079; border: none; margin-bottom: 5px; margin-left: 60px; padding: 6px 20px; border-radius: 7px"; />
+            <input class='btn btn-info' type="reset" value="Limpar campos" style="background-color: #dd9079; border: none; border-radius: 7px; text-align: center; margin-bottom: 5px; margin-left: 5px; padding: 6px 20px; color: white"; />
+        </div>
     </form>
-    </div>
+</div>
 
-
+    
+ 
+ 
 </body>
+</body>
+ 
 </html>
