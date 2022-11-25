@@ -1,15 +1,48 @@
 <?php
 
-require_once('conn.php');
+session_start();
 
-$emai_func = filter_var($_POST['emai_func']);
-$senha_func = md5($_POST['senha_func']);
 
-$sql = 'SELECT * FROM Funcionario1 WHERE emai_func=:emai_func AND senha_func=:senha_func';
-$result = $conn->prepare($sql);
-$result->execute(['emai_func => $emai_func, senha_func => $senha_func']);
-$user = $result->fetch();
+    //print_r($_REQUEST);
+    if(!empty($_POST['email_func']) && !empty($_POST['senha_func']))
 
-var_dump($user);
+    {
+        //Acessa
+        include_once('config.php');
+        $email = $_POST['email_func'];
+        $senha = $_POST['senha_func'];
+
+       //print_r('Email: ' . $email);
+       // print_r('<br>');
+       // print_r('Senha: ' . $senha);
+
+       $sql = "SELECT * FROM funcionario1 WHERE emai_func = '$email' and senha_func = '$senha'";
+
+       $result = $conexao->query($sql);
+
+       //print_r($result);
+
+       if(mysqli_num_rows($result) < 1)
+
+        {  unset($_SESSION['email_func']); 
+           unset($_SESSION['senha_func']); 
+           header('Location: index.php');
+        }
+
+        else
+        {
+           $_SESSION['email_func'] = $email;
+           $_SESSION['senha_func'] = $senha;
+           header('Location: 1agenda.php');
+        }
+
+    }
+
+    else
+    {
+        //Não acessa
+        header('Location: 1login.php');
+    }
+
 
 ?>

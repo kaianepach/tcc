@@ -128,9 +128,9 @@ transition: .5s;
         <h1>Login</h1>
 
 
-        <form method="post">
+        <form method="POST" action="./1login3.php">
             <div class="txt_field">
-                <input type="email" name="emai_func" required>
+                <input type="email" name="email_func" required>
                 <span></span>
                 <label>E-mail</label>
             </div>
